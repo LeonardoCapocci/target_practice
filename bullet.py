@@ -18,4 +18,4 @@ class Bullet(Sprite):
 
     def update(self):
         """Update the positioning of a single bullet."""
-        self.rect.x += 10
+        self.rect.x += 40

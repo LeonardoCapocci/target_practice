@@ -5,6 +5,7 @@ import pygame
 
 from gun import Gun
 from bullet import Bullet
+from target import Target
 
 class TargetPractice:
     """A class to create a target practice game."""
@@ -24,6 +25,9 @@ class TargetPractice:
         # Bullet attributes
         self.bullets = pygame.sprite.Group()
 
+        # Target
+        self.target = Target(self)
+
     def run_game(self):
         """Main loop for the game."""
         while self.game_active:
@@ -33,6 +37,8 @@ class TargetPractice:
             self.gun.update()
 
             self._update_bullets()
+
+            self._update_target()
 
             self._update_screen()
             self.clock.tick(60)
@@ -78,11 +84,16 @@ class TargetPractice:
               if bullet.rect.x > self.screen_rect.right:
                    self.bullets.remove(bullet)
 
+    def _update_target(self):
+         """Updates target's position."""
+         self.target.update()
+
     def _update_screen(self):
         """Spawn the gun."""
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
         self.gun.blitme()
+        self.target.blitme()
 
 if __name__ == '__main__':
     tp = TargetPractice()
