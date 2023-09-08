@@ -22,11 +22,9 @@ class Target:
         """Updates the targets position."""
         if self.rect.top <= self.screen_rect.top:
             self.moving_down = True
-            self.moving_up = False
-        if self.rect.bottom >= self.screen_rect.bottom:
-            self.moving_up = True
+        elif self.rect.bottom >= self.screen_rect.bottom:
             self.moving_down = False
-        if self.moving_up == True:
-            self.rect.y -= self.speed
         if self.moving_down == True:
             self.rect.y += self.speed
+        else:
+            self.rect.y -= self.speed
