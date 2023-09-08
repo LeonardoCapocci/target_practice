@@ -8,14 +8,15 @@ class Bullet(Sprite):
         super().__init__()
         self.screen = game.screen
         self.rect = pygame.rect.Rect(0,0, 20, 8)
+        self.settings = game.settings
 
         self.rect.midright = game.gun.rect.midright
         self.rect.y -= 3
     
     def draw_bullet(self):
         """Draws the bullet."""
-        pygame.draw.rect(self.screen, (200,40,40), self.rect)
+        pygame.draw.rect(self.screen, (self.settings.bullet_color), self.rect)
 
     def update(self):
         """Update the positioning of a single bullet."""
-        self.rect.x += 40
+        self.rect.x += self.settings.bullet_speed

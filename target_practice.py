@@ -3,6 +3,7 @@ from time import sleep
 
 import pygame
 
+from settings import Settings
 from gun import Gun
 from bullet import Bullet
 from target import Target
@@ -16,6 +17,9 @@ class TargetPractice:
         self.screen_rect = self.screen.get_rect()
         self.screen_color = (189,160,125)
         self.clock = pygame.time.Clock()
+
+        # Settings
+        self.settings = Settings()
 
         # Gun attributes
         self.gun = Gun(self)

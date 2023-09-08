@@ -6,6 +6,7 @@ class Target:
         """Initialize target attributes and spawnpoint."""
         self.screen = game.screen
         self.screen_rect = self.screen.get_rect()
+        self.settings = game.settings
 
         self.rect = pygame.rect.Rect(0, 0, 25, 100)
         self.rect.topright = self.screen_rect.topright
@@ -13,10 +14,10 @@ class Target:
         self.moving_down = False
         self.moving_up = False
 
-        self.speed = 3
+        self.speed = self.settings.target_speed
 
     def blitme(self):
-        pygame.draw.rect(self.screen, (0,0,0), self.rect)
+        pygame.draw.rect(self.screen, self.settings.target_color, self.rect)
     
     def update(self):
         """Updates the targets position."""

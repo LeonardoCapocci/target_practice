@@ -4,6 +4,8 @@ class Gun:
     """A class to represent the gun."""
     def __init__(self, game):
         """Initialize gun attributes"""
+        self.settings = game.settings
+        
         self.screen = game.screen
         self.screen_rect = self.screen.get_rect()
         self.image = pygame.image.load('gun.bmp')
@@ -23,9 +25,9 @@ class Gun:
     def update(self):
         """Updates gun's positioning."""
         if self.moving_up == True and self.rect.top >= self.screen_rect.top:
-            self.rect.y -= 10
+            self.rect.y -= self.settings.gun_speed
         if self.moving_down == True and self.rect.bottom <= self.screen_rect.bottom:
-            self.rect.y += 10
+            self.rect.y += self.settings.gun_speed
     
     def center_gun(self):
         """Centers the gun."""
