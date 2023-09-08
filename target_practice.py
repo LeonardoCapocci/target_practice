@@ -4,6 +4,7 @@ from time import sleep
 import pygame
 
 from gun import Gun
+from bullet import Bullet
 
 class TargetPractice:
     """A class to create a target practice game."""
@@ -20,15 +21,20 @@ class TargetPractice:
 
         self.game_active = True
 
+        # Bullet attributes
+        self.bullets = pygame.sprite.Group()
+
     def run_game(self):
         """Main loop for the game."""
         while self.game_active:
             self.screen.fill(self.screen_color)
             self._check_events()
 
-            self._gun_spawn()
             self.gun.update()
 
+            self._update_bullets()
+
+            self._update_screen()
             self.clock.tick(60)
             pygame.display.flip()
 
@@ -50,6 +56,8 @@ class TargetPractice:
              self.gun.moving_up = True
         if event.key == pygame.K_DOWN or event.key == pygame.K_s:
              self.gun.moving_down = True
+        if event.key == pygame.K_SPACE:
+             self._create_bullet()
 
     def _check_keyup_events(self, event):
         """Check for keyup events."""
@@ -58,10 +66,23 @@ class TargetPractice:
         if event.key == pygame.K_DOWN or event.key == pygame.K_s:
              self.gun.moving_down = False
 
-    def _gun_spawn(self):
+    def _create_bullet(self):
+        """Creates a bullet at the gun."""
+        new_bullet = Bullet(self)
+        self.bullets.add(new_bullet)
+
+    def _update_bullets(self):
+         """Updates bullets positioning/existence"""
+         self.bullets.update()
+         for bullet in self.bullets.copy():
+              if bullet.rect.x > self.screen_rect.right:
+                   self.bullets.remove(bullet)
+
+    def _update_screen(self):
         """Spawn the gun."""
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
         self.gun.blitme()
-        self.gun.center_gun
 
 if __name__ == '__main__':
     tp = TargetPractice()
