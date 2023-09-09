@@ -18,4 +18,4 @@ class Settings:
         # Target settings
         self.target_color = (0,0,0)
         self.target_speed = 3
-        self.speed_multiplier = 5
+        self.speed_multiplier = 1.2

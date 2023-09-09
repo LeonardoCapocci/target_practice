@@ -74,6 +74,7 @@ class TargetPractice:
             self.gun.reset()
             self.target.reset()
             sleep(0.25)
+            self.gun.center_gun()
 
     def _check_keydown_events(self, event):
         """Check for keydown events."""
@@ -85,6 +86,14 @@ class TargetPractice:
             self.gun.moving_down = True
         if event.key == pygame.K_SPACE:
             self._create_bullet()
+        if event.key == pygame.K_SPACE and not self.game_active:
+            self.game_active = True
+            pygame.mouse.set_visible(False)
+            self.bullets.empty()
+            self.gun.reset()
+            self.target.reset()
+            sleep(0.25)
+            self.gun.center_gun()
 
     def _check_keyup_events(self, event):
         """Check for keyup events."""
