@@ -29,3 +29,12 @@ class Target:
             self.rect.y += self.speed
         else:
             self.rect.y -= self.speed
+    
+    def reset(self):
+        """Resets the target to topright."""
+        self.rect.topright = self.screen_rect.topright
+        self.speed = self.settings.target_speed
+    
+    def level_up(self):
+        self.rect.topright = self.screen_rect.topright
+        self.speed *= self.settings.speed_multiplier

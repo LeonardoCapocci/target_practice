@@ -33,5 +33,8 @@ class Gun:
         """Centers the gun."""
         self.rect.x = 0
         self.rect.y = self.screen_rect.midleft
-
     
+    def reset(self):
+        """Recenter gun's position."""
+        self.rect.x = 0
+        self.rect.midleft = self.screen_rect.midleft
