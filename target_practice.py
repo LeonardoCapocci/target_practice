@@ -126,6 +126,7 @@ class TargetPractice:
             sleep(1)
             self.target.level_up()
             self.bullets.empty()
+            self.gun.center_gun()
         
     def _check_end_game(self):
         """Checks if the player is out of bullets and all the bullets are off 
