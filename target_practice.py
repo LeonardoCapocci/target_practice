@@ -36,7 +36,6 @@ class TargetPractice:
     def run_game(self):
         """Main loop for the game."""
         while True:
-            print(len(self.bullets))
             self.screen.fill(self.screen_color)
             self._check_events()
             if self.game_active == True:
@@ -122,7 +121,6 @@ class TargetPractice:
     def _check_collision(self):
         """Checks for collisions between bullets and target."""
         if pygame.sprite.spritecollideany(self.target, self.bullets):
-            print("Good shot")
             sleep(1)
             self.target.level_up()
             self.bullets.empty()
